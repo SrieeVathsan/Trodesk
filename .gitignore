@@ -1,0 +1,43 @@
+# ------------------------
+# Environment / Secrets
+# ------------------------
+.env
+.env.dev
+.env.prod
+.env.uat
+social-env/
+env/
+
+# ------------------------
+# Python (Backend)
+# ------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+venv/
+myenv/
+
+# ------------------------
+# Node / React (Frontend)
+# ------------------------
+node_modules/
+build/
+dist/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ------------------------
+# System / IDE
+# ------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# ------------------------
+# Local Netlify
+# ------------------------
+.netlify/

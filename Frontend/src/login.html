@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FB Login for Business Example</title>
+</head>
+<body>
+  <button id="fbBusinessLoginBtn">Login with Facebook Business</button>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1261013392045305',
+        cookie     : true,
+        xfbml      : false,
+        version    : 'v23.0'  // use the version your app supports
+      });
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    document.getElementById('fbBusinessLoginBtn').addEventListener('click', function() {
+      FB.login(function(response) {
+        console.log('Login response:', response);
+        if (response.status === 'connected') {
+          const auth = response.authResponse;
+          console.log('AccessToken:', auth.accessToken);
+          console.log('UserID:', auth.userID);
+          // send this token to backend, or use Graph API
+        } else {
+          console.warn('User not logged in or permission denied');
+        }
+      }, {
+        scope: 'ads_read,ads_management,pages_read_engagement',
+        config_id: '25130051563269756',
+        response_type: 'code',
+        override_default_response_type: true,
+        auth_type: 'rerequest'
+      });
+    });
+  </script>
+</body>
+</html>
