@@ -104,7 +104,7 @@ const App = () => {
     }, FB_SDK_POLL_INTERVAL);
 
     return () => clearInterval(poll);
-  }, []);
+  }, [setFbReady, setFbStatus]);
 
   // Toggle theme helper
   const toggleTheme = () => setDarkMode((p) => !p);
