@@ -452,12 +452,12 @@ const App = () => {
     setFbStatus(null);
   };
 
-  const fbStatusMessage = () => {
-    if (!fbReady) return "Facebook SDK not ready.";
-    if (fbStatus === "connected") return `Facebook: connected ${fbUser?.name ? `- ${fbUser.name}` : ''}`;
-    if (fbStatus === "not_authorized") return "Facebook: not authorized";
-    return "Facebook: not logged in";
-  };
+  // const fbStatusMessage = () => {
+  //   if (!fbReady) return "Facebook SDK not ready.";
+  //   if (fbStatus === "connected") return `Facebook: connected ${fbUser?.name ? `- ${fbUser.name}` : ''}`;
+  //   if (fbStatus === "not_authorized") return "Facebook: not authorized";
+  //   return "Facebook: not logged in";
+  // };
 
   // ---------------- Render ----------------
   return (
