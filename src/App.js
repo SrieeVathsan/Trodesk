@@ -37,7 +37,8 @@ const App = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [fbUser, setFbUser] = useState(null);
   const [fbReady, setFbReady] = useState(false);
-  const [fbStatus, setFbStatus] = useState(null);
+  const [setFbStatus] = useState(null);
+  // const [fbStatus, setFbStatus] = useState(null);
   const fbPollRef = useRef(0);
 
   // Theme init - read from localStorage on mount
