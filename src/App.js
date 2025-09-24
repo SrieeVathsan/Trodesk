@@ -404,15 +404,17 @@ const App = () => {
 
   // ---------------- Facebook login ----------------
   const handleFBLogin = () => {
-    if (!fbReady || !window.FB) {
-      alert("⚠️ Facebook SDK not ready yet, please wait a second.");
-      return;
-    }
+  if (!window.FB || !fbReady) {
+    alert("⚠️ Facebook SDK not ready yet, please wait a second.");
+    return;
+  }
 
+  try {
     window.FB.login(
       (response) => {
         console.log("FB login response", response);
         setFbStatus(response?.status ?? "unknown");
+
         if (response.status === "connected") {
           setFbUser({
             id: response.authResponse.userID,
@@ -420,13 +422,12 @@ const App = () => {
             accessToken: response.authResponse.accessToken
           });
 
-          // Send token to backend
           axios.post("http://localhost:8000/facebook/auth", {
             access_token: response.authResponse.accessToken,
             user_id: response.authResponse.userID
           });
 
-          // Auto-fetch data after login
+          // Auto-fetch data
           setTimeout(() => {
             fetchMentions();
             fetchDms();
@@ -442,7 +443,11 @@ const App = () => {
         auth_type: "rerequest"
       }
     );
-  };
+  } catch (err) {
+    console.error("FB.login error", err);
+    alert("❌ FB login failed. Please refresh and try again.");
+  }
+};
 
   const handleLogout = () => {
     if (window.FB) {
