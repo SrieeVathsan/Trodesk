@@ -77,9 +77,9 @@ const App = () => {
           xfbml: false,
           version: "v23.0",
         });
-        setFbReady(true);
         window.FB.getLoginStatus((resp) => {
           setFbStatus(resp?.status ?? "unknown");
+          setFbReady(true);
         });
       } catch (err) {
         console.error("FB init error:", err);
