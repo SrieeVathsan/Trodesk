@@ -37,9 +37,15 @@ const App = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [fbUser, setFbUser] = useState(null);
   const [fbReady, setFbReady] = useState(false);
-  const [setFbStatus] = useState(null);
-  // const [fbStatus, setFbStatus] = useState(null);
+  const [fbStatus, setFbStatus] = useState("unknown");
   const fbPollRef = useRef(0);
+
+  const fbStatusMessage = () => { 
+    if (!fbReady) return "Facebook SDK not ready."; 
+    if (fbStatus === "connected") return `Facebook: connected ${fbUser?.name ? `- ${fbUser.name}` : ''}`; 
+    if (fbStatus === "not_authorized") return "Facebook: not authorized"; 
+    return "Facebook: not logged in"; 
+  };
 
   // Theme init - read from localStorage on mount
   useEffect(() => {
@@ -526,7 +532,7 @@ const App = () => {
 
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <div style={{ fontSize: 13, color: darkMode ? "#cbd5e1" : "#374151", marginRight: 8 }}>
-              {fbUser ? `Logged in as: ${fbUser.name}` : "Not logged in"}
+             {fbStatusMessage()}
             </div>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               {fbUser ? (
