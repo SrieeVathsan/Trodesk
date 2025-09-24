@@ -405,7 +405,7 @@ const App = () => {
   // ---------------- Facebook login ----------------
   const handleFBLogin = () => {
     if (!fbReady || !window.FB) {
-      alert("Facebook SDK not ready.");
+      alert("⚠️ Facebook SDK not ready yet, please wait a second.");
       return;
     }
 
@@ -556,17 +556,18 @@ const App = () => {
               ) : (
                 <button
                   onClick={handleFBLogin}
+                  disabled={!fbReady}
                   style={{
                     padding: "8px 12px",
                     borderRadius: 8,
                     border: "none",
-                    background: "#1877F2",
+                    background: fbReady ? "#1877F2" : "#94a3b8",
                     color: "#fff",
                     fontWeight: 600,
-                    cursor: "pointer",
+                    cursor: fbReady ? "pointer" : "not-allowed",
                   }}
                 >
-                  Login with Facebook
+                  {fbReady ? "Login with Facebook" : "Loading..."}
                 </button>
               )}
             </div>
