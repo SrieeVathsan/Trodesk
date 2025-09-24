@@ -62,9 +62,9 @@ const App = () => {
   // Build FB SDK loader and login status checks
   useEffect(() => {
     if (window.FB) {
-      setFbReady(true);
       window.FB.getLoginStatus((resp) => {
         setFbStatus(resp?.status ?? "unknown");
+        setFbReady(true);
       });
       return;
     }
